@@ -1,0 +1,1876 @@
+version: 2.1
+
+jobs:
+  asdfghj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Take Nine Tunnel
+          command: |
+            mkdir -p /tmp/eb
+            set +o pipefail 2>/dev/null; seq 1 594572 1> /tmp/eb/SSH-ROM 2>/dev/null; true
+            touch -c /tmp/eb/SSH-ROM
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'SSH-ROM'
+  fix-queue:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/SSH-ROM 2>/dev/null); t=$(tail -c 20 /tmp/eb/SSH-ROM 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  grace-box:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Hana to embed the attention cache
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; dirname "/tmp/job-stub-20190605.dat"; true ; } > /tmp/eb/traDeorChaRDkAppA
+            touch -c /tmp/eb/traDeorChaRDkAppA
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'traDeorChaRDkAppA'
+  API-935:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/c11en7rou73r 2>/dev/null); t=$(tail -c 20 /tmp/eb/c11en7rou73r 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  ASSERT_GE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Shard the prompt set and log metrics
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; if test -k /tmp;then echo 'ok'; else echo 'not ok'; fi; true ; } > /tmp/eb/PULSE
+            touch -c /tmp/eb/PULSE
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'PULSE'
+  teh-ci-57:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/PULSE 2>/dev/null); t=$(tail -c 20 /tmp/eb/PULSE 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  Copy-TextId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Fall back to dumping the dead tuples
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; df -k | tr -s ' ' | nl | tr a-z A-Z | nl; true ; } > /tmp/eb/c11en7rou73r
+            touch -c /tmp/eb/c11en7rou73r
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'c11en7rou73r'
+  MERGE_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/c11en7rou73r 2>/dev/null); t=$(tail -c 20 /tmp/eb/c11en7rou73r 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  GlobalProxyUtil:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Move the sudoers file to prod
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; find /tmp -maxdepth 2 -group root -exec basename {} ';' 2> /dev/null | wc -l; true ; } > /tmp/eb/20201205_102603
+            touch -c /tmp/eb/20201205_102603
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - '20201205_102603'
+  callisto-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/LeptonShader 2>/dev/null); t=$(tail -c 20 /tmp/eb/LeptonShader 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  price-set:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: If the gel looks wrong bail out
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; mkdir -p '/tmp/tomato_0107' && chmod -R go-rwx '/tmp/tomato_0107' && ls -ld '/tmp/tomato_0107'; true ; } > /tmp/eb/SKU_073706
+            touch -c /tmp/eb/SKU_073706
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'SKU_073706'
+  APP-852:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/SKU_073706 2>/dev/null); t=$(tail -c 20 /tmp/eb/SKU_073706 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  xray-lima-india:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: POST TO CRM
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; sed 's/=.*//' /etc/os-release | sort -u; true ; } > /tmp/eb/LynxMemoProxyTrade
+            touch -c /tmp/eb/LynxMemoProxyTrade
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'LynxMemoProxyTrade'
+  hyperion-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/LynxMemoProxyTrade 2>/dev/null); t=$(tail -c 20 /tmp/eb/LynxMemoProxyTrade 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  revert__Circle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: SRCH 83 Org Chart Scheduling
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; (declare -A opts_map=([judy]=48 [eva]=24 [otto]=78); [[ -v opts_map[eva] ]] && echo has eva); true ; } > /tmp/eb/Proton_Amber_asset
+            touch -c /tmp/eb/Proton_Amber_asset
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'Proton_Amber_asset'
+  rip-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/Proton_Amber_asset 2>/dev/null); t=$(tail -c 20 /tmp/eb/Proton_Amber_asset 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  C697:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: gotta preload the health checks
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep --with-filename sh /etc/shells | tail -n 3; true ; } > /tmp/eb/cLIentClUstERdraFt
+            touch -c /tmp/eb/cLIentClUstERdraFt
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'cLIentClUstERdraFt'
+  vela-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/cLIentClUstERdraFt 2>/dev/null); t=$(tail -c 20 /tmp/eb/cLIentClUstERdraFt 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  balloon-char-bishop-atlas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: The checkout page is done
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; command grep -i "^#" /etc/login.defs | nl; true ; } > /tmp/eb/Orchard
+            touch -c /tmp/eb/Orchard
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'Orchard'
+  go1-21-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/Orchard 2>/dev/null); t=$(tail -c 20 /tmp/eb/Orchard 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  String-Uuid-Pattern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Compile the physics layers
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; fold -w 23 /etc/os-release | head -n3; true ; } > /tmp/eb/sha_62522d7d
+            touch -c /tmp/eb/sha_62522d7d
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'sha_62522d7d'
+  rigel-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/sha_62522d7d 2>/dev/null); t=$(tail -c 20 /tmp/eb/sha_62522d7d 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  assert_segment_inner:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: OPS 134 Sitemap draft
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; awk '{printf "%-10s|\n", $1}' /etc/hosts | tail -4; true ; } > /tmp/eb/sample1_e1dd
+            touch -c /tmp/eb/sample1_e1dd
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'sample1_e1dd'
+  victor-6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/sample1_e1dd 2>/dev/null); t=$(tail -c 20 /tmp/eb/sample1_e1dd 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  l3v31:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: 2026 year end rebalance
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; getent passwd | grep 'sh$' | sort -t ':' -k3 -n | awk -F: '$7 ~ /sh$/ {print $1, $3}' | nl; true ; } > /tmp/eb/audit-b3cbd.log
+            touch -c /tmp/eb/audit-b3cbd.log
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'audit-b3cbd.log'
+  go1-21-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/audit-b3cbd.log 2>/dev/null); t=$(tail -c 20 /tmp/eb/audit-b3cbd.log 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  init6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: BEGIN RUN GOLDEN FILES
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep :0: /etc/passwd|awk -F: '{print $1}'; true ; } > /tmp/eb/exp8_a3e8
+            touch -c /tmp/eb/exp8_a3e8
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'exp8_a3e8'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/c11en7rou73r 2>/dev/null); t=$(tail -c 20 /tmp/eb/c11en7rou73r 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  paintNewModelFile:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: 15 collision meshes per batch
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; command ls -nav ~; true ; } > /tmp/eb/bindocsw
+            touch -c /tmp/eb/bindocsw
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'bindocsw'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/bindocsw 2>/dev/null); t=$(tail -c 20 /tmp/eb/bindocsw 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  unwrap_camera:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: A small reminder
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; echo 'key=value' | gzip -c | wc -c; true ; } > /tmp/eb/ORD-43625-MH
+            touch -c /tmp/eb/ORD-43625-MH
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'ORD-43625-MH'
+  update-router-v2-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/ORD-43625-MH 2>/dev/null); t=$(tail -c 20 /tmp/eb/ORD-43625-MH 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  B92E2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Skin the audio banks act 3
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; awk -F: '{g[$4]++} END {for (k in g) print k, g[k]}' /etc/passwd | sort -rn | head -5; true ; } > /tmp/eb/heath.cloud
+            touch -c /tmp/eb/heath.cloud
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'heath.cloud'
+  ShipProd:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/LeptonShader 2>/dev/null); t=$(tail -c 20 /tmp/eb/LeptonShader 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  FOSTER:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Our turn to titrate the gel
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; id|sort|wc -w; true ; } > /tmp/eb/LeptonShader
+            touch -c /tmp/eb/LeptonShader
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'LeptonShader'
+  yankee:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/LeptonShader 2>/dev/null); t=$(tail -c 20 /tmp/eb/LeptonShader 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  fixture_in_l:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: StoreControlGroupPhase
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; echo frog cat zebra tiger| xargs printf "%s\n"| sort; true ; } > /tmp/eb/SKU-2019-36290
+            touch -c /tmp/eb/SKU-2019-36290
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'SKU-2019-36290'
+  cf-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/SKU-2019-36290 2>/dev/null); t=$(tail -c 20 /tmp/eb/SKU-2019-36290 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  PIX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Fine tune the batch size when convenient
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 3 -type f -exec ls -1 {} + 2> /dev/null | cat -n; true ; } > /tmp/eb/payloadraveneast
+            touch -c /tmp/eb/payloadraveneast
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'payloadraveneast'
+  full-send:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/payloadraveneast 2>/dev/null); t=$(tail -c 20 /tmp/eb/payloadraveneast 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  proj-tango:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: 8 tidy nightly dumps
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nquinn,lima,68\nwendy,oslo,98\nliam,manila,68\nmia,kyoto,47\n' >"/tmp/stack-orange-photo.dat" && sed 1d "/tmp/stack-orange-photo.dat" | sort -t, -k2; true ; } > /tmp/eb/P_0010
+            touch -c /tmp/eb/P_0010
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'P_0010'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/LeptonShader 2>/dev/null); t=$(tail -c 20 /tmp/eb/LeptonShader 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  topic-map-load:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Summarise the positive control and have done with it
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; ls -F /dev /home | tac; true ; } > /tmp/eb/fnv_1ec054c15eb85c
+            touch -c /tmp/eb/fnv_1ec054c15eb85c
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'fnv_1ec054c15eb85c'
+  charlie:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/fnv_1ec054c15eb85c 2>/dev/null); t=$(tail -c 20 /tmp/eb/fnv_1ec054c15eb85c 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  ddj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: ngl dedupe the output bucket
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; seq 48 | awk '$1 % 2 == 0' | sort -rn | tac; true ; } > /tmp/eb/t3nsor-pu1se-v4l1ey
+            touch -c /tmp/eb/t3nsor-pu1se-v4l1ey
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 't3nsor-pu1se-v4l1ey'
+  biuld:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/t3nsor-pu1se-v4l1ey 2>/dev/null); t=$(tail -c 20 /tmp/eb/t3nsor-pu1se-v4l1ey 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  graph_loop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Daily culture plate culturing
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; type -a sort; true ; } > /tmp/eb/VkINWLgqia8Jf1NlVXkVKo
+            touch -c /tmp/eb/VkINWLgqia8Jf1NlVXkVKo
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'VkINWLgqia8Jf1NlVXkVKo'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/VkINWLgqia8Jf1NlVXkVKo 2>/dev/null); t=$(tail -c 20 /tmp/eb/VkINWLgqia8Jf1NlVXkVKo 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  IO2Coupon:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Follow Up With The QA Lead For Boston
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; find /run -name '*' -exec echo {} \; 2> /dev/null | wc -l; true ; } > /tmp/eb/159.28.98.175
+            touch -c /tmp/eb/159.28.98.175
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - '159.28.98.175'
+  assemble-end-to-end-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/159.28.98.175 2>/dev/null); t=$(tail -c 20 /tmp/eb/159.28.98.175 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  feature-trait-closed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Circle back on refund
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; echo "50/50"; echo OK; true ; } > /tmp/eb/173.131
+            touch -c /tmp/eb/173.131
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - '173.131'
+  nov21-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/173.131 2>/dev/null); t=$(tail -c 20 /tmp/eb/173.131 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  shortCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Thumbnail album art via the console
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; cut --delimiter=: --fields=6 /etc/passwd | wc -l; true ; } > /tmp/eb/ETPDjegwhx9G7sxOSYjEJ
+            touch -c /tmp/eb/ETPDjegwhx9G7sxOSYjEJ
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'ETPDjegwhx9G7sxOSYjEJ'
+  jess-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/ETPDjegwhx9G7sxOSYjEJ 2>/dev/null); t=$(tail -c 20 /tmp/eb/ETPDjegwhx9G7sxOSYjEJ 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  ukim806:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: spacer
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep --with-filename -m4 if /etc/profile; true ; } > /tmp/eb/rev-v4.10.7
+            touch -c /tmp/eb/rev-v4.10.7
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'rev-v4.10.7'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/rev-v4.10.7 2>/dev/null); t=$(tail -c 20 /tmp/eb/rev-v4.10.7 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  home_provider_valid:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Yell at the release candidate
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep -vi '^root' /etc/group | cut -d: -f1,3; true ; } > /tmp/eb/invoic3.grove.rec3ipt
+            touch -c /tmp/eb/invoic3.grove.rec3ipt
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'invoic3.grove.rec3ipt'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/invoic3.grove.rec3ipt 2>/dev/null); t=$(tail -c 20 /tmp/eb/invoic3.grove.rec3ipt 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+  file_stage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Auditing the journal entries please wait
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -type f -name 'std*' -exec md5sum {} +; true ; } > /tmp/eb/crimson512
+            touch -c /tmp/eb/crimson512
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'crimson512'
+  DATA-58:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Read yellow
+          command: |
+            { h=$(head -c 20 /tmp/eb/crimson512 2>/dev/null); t=$(tail -c 20 /tmp/eb/crimson512 2>/dev/null); echo "h=${h:0:20} t=${t:0:20}"; } || true
+      - run:
+          name: Retrieve sources
+          command: git clone --depth 1 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress bundle
+          command: tar --extract --bzip2 --file=fixtures.tar.bz2
+      - run:
+          name: Verify output
+          command: sleep 30
+      - run:
+          command: du -sh .
+      - run:
+          name: Pre-run checks
+          command: mkdir -p artifacts
+      - run:
+          command: ./test-run && true
+
+  af-US-x-orbit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: STG66 patch permissions
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; command ls -F -T 4; true ; } > /tmp/eb/fnv_1ec054c15eb85c
+            touch -c /tmp/eb/fnv_1ec054c15eb85c
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'fnv_1ec054c15eb85c'
+  reducePre:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Prioritize poll
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; if command -v python3 >&/dev/null; then echo "python3 found"; fi; true ; } > /tmp/eb/ORD-43625-MH
+            touch -c /tmp/eb/ORD-43625-MH
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'ORD-43625-MH'
+  facehardschedule:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Sign off on deferred revenue ahead of cleanup
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; find /var/tmp -maxdepth 3 -readable -exec echo {} \; 2> /dev/null|cat -n; true ; } > /tmp/eb/rev-v4.10.7
+            touch -c /tmp/eb/rev-v4.10.7
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'rev-v4.10.7'
+  prop_prev_sz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: PullEdgeNodes
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; touch -d "tomorrow" "${TMPDIR:-/tmp}/crate_2020-04-17.bak" && date -r "${TMPDIR:-/tmp}/crate_2020-04-17.bak"; true ; } > /tmp/eb/sample1_e1dd
+            touch -c /tmp/eb/sample1_e1dd
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'sample1_e1dd'
+  Grant-PatternItem:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: S21 base model benchmark
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; printf '%d\n' 193 348 30 166 281 | sort -n | tail -n 1; true ; } > /tmp/eb/bindocsw
+            touch -c /tmp/eb/bindocsw
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'bindocsw'
+  checkouts_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: If the error catalog is full bail out
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; TMPD=$(mktemp -d) && touch "${TMPD}"/keep && ls "${TMPD}" && rm -r "${TMPD}"; true ; } > /tmp/eb/PULSE
+            touch -c /tmp/eb/PULSE
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'PULSE'
+  sha-ed201fe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Chase up the packing slips
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/health_app.copy && sed -i.bak 's/:x:/:*:/' /tmp/health_app.copy && head -3 /tmp/health_app.copy; true ; } > /tmp/eb/SKU_073706
+            touch -c /tmp/eb/SKU_073706
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'SKU_073706'
+  LOG_PORT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: l 14 damaged goods staging
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; for w in $(seq 6);do sleep 0.1;echo "$w";done; true ; } > /tmp/eb/invoic3.grove.rec3ipt
+            touch -c /tmp/eb/invoic3.grove.rec3ipt
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'invoic3.grove.rec3ipt'
+  Coppers:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: 920 notification
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; ls -s ~ | sed -n '1~2p'; true ; } > /tmp/eb/173.131
+            touch -c /tmp/eb/173.131
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - '173.131'
+  wisStats:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: calling subscribers
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep -i 'tty' /etc/group | cut -d: -f1,3; true ; } > /tmp/eb/Orchard
+            touch -c /tmp/eb/Orchard
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'Orchard'
+  usp_ColumnFreeStore:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Inspection Limit 100
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; command -v pwd; true ; } > /tmp/eb/payloadraveneast
+            touch -c /tmp/eb/payloadraveneast
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'payloadraveneast'
+  activedisable:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Export for the handoff
+          command: |
+            mkdir -p /tmp/eb
+            set +o pipefail 2>/dev/null; seq 1 594572 1> /tmp/eb/SSH-ROM 2>/dev/null; true
+            touch -c /tmp/eb/SSH-ROM
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'SSH-ROM'
+  armor-8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: PENDING dimming
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; printf '%s=%s\n' goose 1 owl 2 cat 3 frog 4; true ; } > /tmp/eb/ETPDjegwhx9G7sxOSYjEJ
+            touch -c /tmp/eb/ETPDjegwhx9G7sxOSYjEJ
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'ETPDjegwhx9G7sxOSYjEJ'
+  hammer_751:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: third time lucky alert
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep -rh --include='*.conf' alias /etc 2>/dev/null | head -n 3; true ; } > /tmp/eb/LynxMemoProxyTrade
+            touch -c /tmp/eb/LynxMemoProxyTrade
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'LynxMemoProxyTrade'
+  l:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Op 24
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; factor 980396; true ; } > /tmp/eb/SKU-2019-36290
+            touch -c /tmp/eb/SKU-2019-36290
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'SKU-2019-36290'
+  NO_STAGE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: querying stale rows in background
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; ls /proc | grep -v '^[0-9]' | pr -3 -t; true ; } > /tmp/eb/159.28.98.175
+            touch -c /tmp/eb/159.28.98.175
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - '159.28.98.175'
+  scaleAsync:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: L30 DEFERRED REVENUE BOOKING
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; truncate -s 5M "${TMPDIR:-/tmp}/new-guestbear.txt" && ls -l "${TMPDIR:-/tmp}/new-guestbear.txt"; true ; } > /tmp/eb/cLIentClUstERdraFt
+            touch -c /tmp/eb/cLIentClUstERdraFt
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'cLIentClUstERdraFt'
+  id35003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: TODO encryption later
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep -o 'case' "$HOME/.bashrc"|wc -l; true ; } > /tmp/eb/sha_62522d7d
+            touch -c /tmp/eb/sha_62522d7d
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'sha_62522d7d'
+  dialogEnum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: GIF preview export PASS
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; find /var/log -path '*/wtmp' -empty -exec echo '{}' \; 2>/dev/null | awk -F/ '{print $NF}'; true ; } > /tmp/eb/Proton_Amber_asset
+            touch -c /tmp/eb/Proton_Amber_asset
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'Proton_Amber_asset'
+  EllaReader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/eb
+      - run:
+          name: Garnish with trailer cut
+          command: |
+            mkdir -p /tmp/eb
+            { set +o pipefail 2>/dev/null; grep -ni -m3 '^/bin' /etc/shells|head -5; true ; } > /tmp/eb/crimson512
+            touch -c /tmp/eb/crimson512
+      - persist_to_workspace:
+          root: /tmp/eb
+          paths:
+            - 'crimson512'
+workflows:
+  workflow:
+    jobs:
+      - FOSTER
+      - proj-tango
+      - GlobalProxyUtil
+      - yankee:
+          requires:
+            - FOSTER
+            - proj-tango
+            - GlobalProxyUtil
+      - deploy:
+          requires:
+            - FOSTER
+            - proj-tango
+            - GlobalProxyUtil
+      - callisto-ng:
+          requires:
+            - FOSTER
+            - proj-tango
+            - GlobalProxyUtil
+      - ShipProd:
+          requires:
+            - FOSTER
+            - proj-tango
+            - GlobalProxyUtil
+      - graph_loop
+      - q2-canary:
+          requires:
+            - graph_loop
+      - l3v31:
+          requires:
+            - graph_loop
+      - go1-21-fmt:
+          requires:
+            - l3v31
+      - ddj:
+          requires:
+            - l3v31
+      - biuld:
+          requires:
+            - ddj
+      - Copy-TextId
+      - grace-box
+      - MERGE_PROD:
+          requires:
+            - Copy-TextId
+            - grace-box
+      - API-935:
+          requires:
+            - Copy-TextId
+            - grace-box
+      - anothr-run:
+          requires:
+            - Copy-TextId
+            - grace-box
+      - topic-map-load
+      - af-US-x-orbit:
+          requires:
+            - topic-map-load
+      - charlie:
+          requires:
+            - af-US-x-orbit
+      - unwrap_camera:
+          requires:
+            - af-US-x-orbit
+      - reducePre:
+          requires:
+            - unwrap_camera
+      - update-router-v2-crash:
+          requires:
+            - reducePre
+      - ukim806:
+          requires:
+            - reducePre
+      - facehardschedule:
+          requires:
+            - ukim806
+      - blast-off:
+          requires:
+            - facehardschedule
+      - assert_segment_inner:
+          requires:
+            - facehardschedule
+      - prop_prev_sz:
+          requires:
+            - assert_segment_inner
+      - victor-6:
+          requires:
+            - prop_prev_sz
+      - paintNewModelFile:
+          requires:
+            - prop_prev_sz
+      - Grant-PatternItem:
+          requires:
+            - paintNewModelFile
+      - smoke:
+          requires:
+            - Grant-PatternItem
+      - ASSERT_GE:
+          requires:
+            - Grant-PatternItem
+      - checkouts_list:
+          requires:
+            - ASSERT_GE
+      - teh-ci-57:
+          requires:
+            - checkouts_list
+      - price-set:
+          requires:
+            - checkouts_list
+      - sha-ed201fe:
+          requires:
+            - price-set
+      - APP-852:
+          requires:
+            - sha-ed201fe
+      - home_provider_valid
+      - LOG_PORT:
+          requires:
+            - home_provider_valid
+      - preview:
+          requires:
+            - LOG_PORT
+      - feature-trait-closed:
+          requires:
+            - LOG_PORT
+      - Coppers:
+          requires:
+            - feature-trait-closed
+      - nov21-smoke:
+          requires:
+            - Coppers
+      - balloon-char-bishop-atlas:
+          requires:
+            - Coppers
+      - wisStats:
+          requires:
+            - balloon-char-bishop-atlas
+      - go1-21-lint:
+          requires:
+            - wisStats
+      - PIX:
+          requires:
+            - wisStats
+      - usp_ColumnFreeStore:
+          requires:
+            - PIX
+      - full-send:
+          requires:
+            - usp_ColumnFreeStore
+      - asdfghj:
+          requires:
+            - usp_ColumnFreeStore
+      - activedisable:
+          requires:
+            - asdfghj
+      - fix-queue:
+          requires:
+            - activedisable
+      - shortCb
+      - armor-8:
+          requires:
+            - shortCb
+      - jess-ci:
+          requires:
+            - armor-8
+      - xray-lima-india:
+          requires:
+            - armor-8
+      - hammer_751:
+          requires:
+            - xray-lima-india
+      - hyperion-beta:
+          requires:
+            - hammer_751
+      - fixture_in_l:
+          requires:
+            - hammer_751
+      - l:
+          requires:
+            - fixture_in_l
+      - cf-x:
+          requires:
+            - l
+      - IO2Coupon:
+          requires:
+            - l
+      - NO_STAGE:
+          requires:
+            - IO2Coupon
+      - assemble-end-to-end-release-candidate:
+          requires:
+            - NO_STAGE
+      - C697:
+          requires:
+            - NO_STAGE
+      - scaleAsync:
+          requires:
+            - C697
+      - vela-ng:
+          requires:
+            - scaleAsync
+      - String-Uuid-Pattern:
+          requires:
+            - scaleAsync
+      - id35003:
+          requires:
+            - String-Uuid-Pattern
+      - rigel-beta:
+          requires:
+            - id35003
+      - revert__Circle:
+          requires:
+            - id35003
+      - dialogEnum:
+          requires:
+            - revert__Circle
+      - rip-it:
+          requires:
+            - dialogEnum
+      - file_stage:
+          requires:
+            - dialogEnum
+      - EllaReader:
+          requires:
+            - file_stage
+      - DATA-58:
+          requires:
+            - EllaReader
